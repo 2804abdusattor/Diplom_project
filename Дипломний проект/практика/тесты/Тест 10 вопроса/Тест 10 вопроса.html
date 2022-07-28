@@ -1,0 +1,323 @@
+<html>
+<head><title>Тест</title>
+<script type="text/javascript" src="data/data.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+
+p, span, td {
+ font-size:24px;
+
+
+}
+button{
+    font-size:18px;
+}
+#vo {
+    color:green;
+}
+#nvo {
+    color:red;
+}
+#ot {
+    color:mintcream;
+}
+
+input{
+    padding: 1px;
+    margin: 10px;
+    border-radius: 5px;
+    width: 20%;
+}
+h1{
+    padding: 10px;
+    margin: 10px;
+}
+button {
+    background-color: lightgreen;
+    border-radius: 10px;
+    color: darkred;
+}
+button:hover{
+    background-color: lightblue;
+}
+.test {
+    padding: 7% 1%;
+    margin: 2%;
+    background-color: burlywood;
+    border: 5px solid darkred;
+    border-radius: 5px;
+    font-size: 1.4em;
+    color: white;
+    background-image: url("https://catherineasquithgallery.com/uploads/posts/2021-02/1612321593_144-p-shabloni-dlya-prezentatsii-korichnevii-fon-188.jpg");
+}
+#main{
+    color: black;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+#main:hover {
+    color: yellow;
+}
+body{
+    background-image: url("https://catherineasquithgallery.com/uploads/posts/2021-02/1612411243_47-p-korichnevii-fon-pod-starinu-83.jpg");
+}
+
+</style>
+</head>
+<body style="background-color: lightslategray;">
+<div class="test" style="margin-left: auto;margin-right: auto;width: 600px;text-align:center;">
+<h1>Тест</h1>
+<p> Тема: <span id="tema"></span>.<br></p>
+<div id="vopros1" style="display:block;">
+<p>Вопрос 1</p>
+<p><span id="v_1"></span> <br><input type="text" id="z_1"></p>
+</div>
+<div id="vopros2" style="display:none;">
+<p>Вопрос 2</p>
+<p><span id="v_2"></span> <br><input type="text" id="z_2"></p>
+</div>
+<div id="vopros3" style="display:none;">
+<p>Вопрос 3</p>
+<p><span id="v_3"></span> <br><input type="text" id="z_3"></p>
+</div>
+<div id="vopros4" style="display:none;">
+<p>Вопрос 4</p>
+<p><span id="v_4"></span> <br><input type="text" id="z_4"></p>
+</div>
+<div id="vopros5" style="display:none;">
+<p>Вопрос 5</p>
+<p><span id="v_5"></span> <br><input type="text" id="z_5"></p>
+</div>
+<div id="vopros6" style="display:none;">
+<p>Вопрос 6</p>
+<p><span id="v_6"></span> <br><input type="text" id="z_6"></p>
+</div>
+<div id="vopros7" style="display:none;">
+<p>Вопрос 7</p>
+<p><span id="v_7"></span> <br><input type="text" id="z_7"></p>
+</div>
+<div id="vopros8" style="display:none;">
+<p>Вопрос 8</p>
+<p><span id="v_8"></span> <br><input type="text" id="z_8"></p>
+</div>
+<div id="vopros9" style="display:none;">
+<p>Вопрос 9</p>
+<p><span id="v_9"></span> <br><input type="text" id="z_9"></p>
+</div>
+<div id="vopros10" style="display:none;">
+<p>Вопрос 10</p>
+<p><span id="v_10"></span> <br><input type="text" id="z_10"></p>
+</div>
+<button id="kn_sl" onclick="sled_vopr();">Следующий вопрос</button>
+<center><button id="kn_pr" style="display:none;" onclick="proverit();">Проверить</button></center>
+<div id="rezultat"></div><br><br>
+<a id ="main" href="/Дипломний проект/index.php">Главная страница</a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('v_1').innerHTML = vopros_1;
+    document.getElementById('v_2').innerHTML = vopros_2;
+    document.getElementById('v_3').innerHTML = vopros_3;
+    document.getElementById('v_4').innerHTML = vopros_4;
+    document.getElementById('v_5').innerHTML = vopros_5;
+    document.getElementById('v_6').innerHTML = vopros_6;
+    document.getElementById('v_7').innerHTML = vopros_7;
+    document.getElementById('v_8').innerHTML = vopros_8;
+    document.getElementById('v_9').innerHTML = vopros_9;
+    document.getElementById('v_10').innerHTML = vopros_10;
+    document.getElementById('tema').innerHTML = test;
+});
+document.addEventListener('DOMContentLoaded', function(){
+
+    voprosi = [[vopros_1,pr_otv_zadachi_1],[vopros_2,pr_otv_zadachi_2],[vopros_3,pr_otv_zadachi_3],[vopros_4,pr_otv_zadachi_4],[vopros_5,pr_otv_zadachi_5],[vopros_6,pr_otv_zadachi_6],[vopros_7,pr_otv_zadachi_7],[vopros_8,pr_otv_zadachi_8],[vopros_9,pr_otv_zadachi_9],[vopros_10,pr_otv_zadachi_10]];
+    if(peremeshat_voprosi == "да"){
+        voprosi = peremeshat_vse_voprosi(voprosi);
+    }
+    document.getElementById('v_1').innerHTML = voprosi[0][0];
+    document.getElementById('v_2').innerHTML = voprosi[1][0];
+    document.getElementById('v_3').innerHTML = voprosi[2][0];
+    document.getElementById('v_4').innerHTML = voprosi[3][0];
+    document.getElementById('v_5').innerHTML = voprosi[4][0];
+    document.getElementById('v_6').innerHTML = voprosi[5][0];
+    document.getElementById('v_7').innerHTML = voprosi[6][0];
+    document.getElementById('v_8').innerHTML = voprosi[7][0];
+    document.getElementById('v_9').innerHTML = voprosi[8][0];
+    document.getElementById('v_10').innerHTML = voprosi[9][0];
+    document.getElementById('tema').innerHTML = test;
+});
+function sled_vopr(){
+    if(document.getElementById('vopros9').style.display == "block"){
+        document.getElementById('vopros9').style.display = "none";
+        document.getElementById('vopros10').style.display = "block";
+        document.getElementById('kn_sl').style.display = "none";
+        document.getElementById('kn_pr').style.display = "block";
+    }
+    if(document.getElementById('vopros8').style.display == "block"){
+        document.getElementById('vopros8').style.display = "none";
+        document.getElementById('vopros9').style.display = "block";
+    }
+    if(document.getElementById('vopros7').style.display == "block"){
+        document.getElementById('vopros7').style.display = "none";
+        document.getElementById('vopros8').style.display = "block";
+    }
+    if(document.getElementById('vopros6').style.display == "block"){
+        document.getElementById('vopros6').style.display = "none";
+        document.getElementById('vopros7').style.display = "block";
+    }
+    if(document.getElementById('vopros5').style.display == "block"){
+        document.getElementById('vopros5').style.display = "none";
+        document.getElementById('vopros6').style.display = "block";
+    }
+    if(document.getElementById('vopros4').style.display == "block"){
+        document.getElementById('vopros4').style.display = "none";
+        document.getElementById('vopros5').style.display = "block";
+    }
+    if(document.getElementById('vopros3').style.display == "block"){
+        document.getElementById('vopros3').style.display = "none";
+        document.getElementById('vopros4').style.display = "block";
+    }
+    if(document.getElementById('vopros2').style.display == "block"){
+        document.getElementById('vopros2').style.display = "none";
+        document.getElementById('vopros3').style.display = "block";
+    }
+    if(document.getElementById('vopros1').style.display == "block"){
+        document.getElementById('vopros1').style.display = "none";
+        document.getElementById('vopros2').style.display = "block";
+    }
+}
+function proverit(){
+otv_uch_1 = document.getElementById('z_1').value.toLowerCase();
+// alert( 'Привет, мир!' );
+otv_ucgenika_1 = otv_uch_1;
+// otv_uch_1 = kodirov(otv_uch_1);
+otv_uch_2 = document.getElementById('z_2').value.toLowerCase();
+otv_ucgenika_2 = otv_uch_2;
+// otv_uch_2 = kodirov(otv_uch_2);
+otv_uch_3 = document.getElementById('z_3').value.toLowerCase();
+otv_ucgenika_3 = otv_uch_3;
+// otv_uch_3 = kodirov(otv_uch_3);
+otv_uch_4 = document.getElementById('z_4').value.toLowerCase();
+otv_ucgenika_4 = otv_uch_4;
+// otv_uch_4 = kodirov(otv_uch_4);
+otv_uch_5 = document.getElementById('z_5').value;
+otv_ucgenika_5 = otv_uch_5;
+// otv_uch_5 = kodirov(otv_uch_5);
+otv_uch_6 = document.getElementById('z_6').value;
+otv_ucgenika_6 = otv_uch_6;
+// otv_uch_6 = kodirov(otv_uch_6);
+otv_uch_7 = document.getElementById('z_7').value;
+otv_ucgenika_7 = otv_uch_7;
+// otv_uch_7 = kodirov(otv_uch_7);
+otv_uch_8 = document.getElementById('z_8').value;
+otv_ucgenika_8 = otv_uch_8;
+// otv_uch_8 = kodirov(otv_uch_8);
+otv_uch_9 = document.getElementById('z_9').value;
+otv_ucgenika_9 = otv_uch_9;
+// otv_uch_9 = kodirov(otv_uch_9);
+otv_uch_10 = document.getElementById('z_10').value;
+otv_ucgenika_10 = otv_uch_10;
+// otv_uch_10 = kodirov(otv_uch_10);
+ball = 0;
+document.getElementById('vopros10').style.display = "none";
+document.getElementById('kn_pr').style.display = "none";
+otveti = "<table class='table'><tr class='table-active'><td>№</td><td>Вопрос</td><td>Ответ</td></tr>";
+if(otv_uch_1 == voprosi[0][1]){
+    ball +=1;
+    otveti += "<tr class='table-success'><td>1)</td><td>"+voprosi[0][0]+"</td><td>Вы ответили верно. Ваш ответ: "+otv_ucgenika_1+"</td></tr>";
+} else {
+    otveti += "<tr class='table-danger'><td>1)</td><td>"+voprosi[0][0]+"</td><td>Вы ответили не верно. Ваш ответ: "+otv_ucgenika_1+"</td></tr>";
+}
+if(otv_uch_2 == voprosi[1][1]){
+    ball +=1;
+    otveti += "<tr class='table-success'><td>2)</td><td>"+voprosi[1][0]+"</td><td>Вы ответили верно. Ваш ответ: "+otv_ucgenika_2+"</td></tr>";
+} else {
+   otveti += "<tr class='table-danger'><td>2)</td><td>"+voprosi[1][0]+"</td><td>Вы ответили не верно. Ваш ответ: "+otv_ucgenika_2+"</td></tr>";
+}
+if(otv_uch_3 == voprosi[2][1]){
+    ball +=1;
+    otveti += "<tr class='table-success'><td>3)</td><td>"+voprosi[2][0]+"</td><td>Вы ответили верно. Ваш ответ: "+otv_ucgenika_3+"</td></tr>";
+} else {
+    otveti += "<tr class='table-danger'><td>3)</td><td>"+voprosi[2][0]+"</td><td>Вы ответили не верно. Ваш ответ: "+otv_ucgenika_3+"</td></tr>";
+}
+if(otv_uch_4 == voprosi[3][1]){
+    ball +=1;
+    otveti += "<tr class='table-success'><td>4)</td><td>"+voprosi[3][0]+"</td><td>Вы ответили верно. Ваш ответ: "+otv_ucgenika_4+"</td></tr>";
+} else {
+    otveti += "<tr class='table-danger'><td>4)</td><td>"+voprosi[3][0]+"</td><td>Вы ответили не верно. Ваш ответ: "+otv_ucgenika_4+"</td></tr>";
+}
+if(otv_uch_5 == voprosi[4][1]){
+    ball +=1;
+    otveti += "<tr class='table-success'><td>5)</td><td>"+voprosi[4][0]+"</td><td>Вы ответили верно. Ваш ответ: "+otv_ucgenika_5+"</td></tr>";
+} else {
+    otveti += "<tr class='table-danger'><td>5)</td><td>"+voprosi[4][0]+"</td><td>Вы ответили не верно. Ваш ответ: "+otv_ucgenika_5+"</td></tr>";
+}
+if(otv_uch_6 == voprosi[5][1]){
+    ball +=1;
+    otveti += "<tr class='table-success'><td>6)</td><td>"+voprosi[5][0]+"</td><td>Вы ответили верно. Ваш ответ: "+otv_ucgenika_6+"</td></tr>";
+} else {
+   otveti += "<tr class='table-danger'><td>6)</td><td>"+voprosi[5][0]+"</td><td>Вы ответили не верно. Ваш ответ: "+otv_ucgenika_6+"</td></tr>";
+}
+if(otv_uch_7 == voprosi[6][1]){
+    ball +=1;
+    otveti += "<tr class='table-success'><td>7)</td><td>"+voprosi[6][0]+"</td><td>Вы ответили верно. Ваш ответ: "+otv_ucgenika_7+"</td></tr>";
+} else {
+    otveti += "<tr class='table-danger'><td>7)</td><td>"+voprosi[6][0]+"</td><td>Вы ответили не верно. Ваш ответ: "+otv_ucgenika_7+"</td></tr>";
+}
+if(otv_uch_8 == voprosi[7][1]){
+    ball +=1;
+    otveti += "<tr class='table-success'><td>8)</td><td>"+voprosi[7][0]+"</td><td>Вы ответили верно. Ваш ответ: "+otv_ucgenika_8+"</td></tr>";
+} else {
+     otveti += "<tr class='table-danger'><td>8)</td><td>"+voprosi[7][0]+"</td><td>Вы ответили не верно. Ваш ответ: "+otv_ucgenika_8+"</td></tr>";
+}
+if(otv_uch_9 == voprosi[8][1]){
+    ball +=1;
+    otveti += "<tr class='table-success'><td>9)</td><td>"+voprosi[8][0]+"</td><td>Вы ответили верно. Ваш ответ: "+otv_ucgenika_9+"</td></tr>";
+} else {
+    otveti += "<tr class='table-danger'><td>9)</td><td>"+voprosi[8][0]+"</td><td>Вы ответили не верно. Ваш ответ: "+otv_ucgenika_9+"</td></tr>";
+}
+if(otv_uch_10 == voprosi[9][1]){
+    ball +=1;
+    otveti += "<tr class='table-success'><td>10)</td><td>"+voprosi[9][0]+"</td><td>Вы ответили верно. Ваш ответ: "+otv_ucgenika_10+"</td></tr>";
+} else {
+    otveti += "<tr class='table-danger'><td>10)</td><td>"+voprosi[9][0]+"</td><td>Вы ответили не верно. Ваш ответ: "+otv_ucgenika_10+"</td></tr>";
+}
+
+vsego_zadach = 10;
+procent_vip = ball/vsego_zadach * 100;
+procent_vip = procent_vip.toFixed();
+document.getElementById('rezultat').innerHTML = "<span id='ot'>Задания выполнены верно на "+procent_vip+"%.</span><br><br>"+otveti;
+}
+// function kodirov(stroka) {
+//     var b64ch = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefg'+
+//                    'hijklmnopqrstuvwxyz0123456789+/=';
+//     var b64enc = '';
+//     var ch1, ch2, ch3;
+//     var en1, en2, en3, en4;
+//     for (var i=0; i<stroka.length;) {
+//         ch1 = stroka.charCodeAt(i++);
+//         ch2 = stroka.charCodeAt(i++);
+//         ch3 = stroka.charCodeAt(i++);
+//         en1 = ch1 >> 2;
+//         en2 = ((ch1 & 3) << 4) | (ch2 >> 4);
+//         en3 = isNaN(ch2) ? 64:(((ch2 & 15) << 2) | (ch3 >> 6));
+//         en4 = isNaN(ch3) ? 64:(ch3 & 63);
+//         b64enc += b64ch.charAt(en1) + b64ch.charAt(en2) +
+//                       b64ch.charAt(en3) + b64ch.charAt(en4);
+//     }
+//     return b64enc;
+// }
+function peremeshat_vse_voprosi(m_vopros) {
+    for (var i = m_vopros.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = m_vopros[i];
+        m_vopros[i] = m_vopros[j];
+        m_vopros[j] = temp;
+    }
+    return m_vopros;
+}
+</script>
+</body>
+</html>
